@@ -1,0 +1,24 @@
+Variable;Target;Indicators
+Genetic composition;A;1
+Species populations;A;3
+Community composition;A;2
+Ecosystem structure;A;1
+Ecosystem_function;A;1
+Ecosystem_function;B;1
+Species populations;1;1
+Community composition;1;1
+Ecosystem structure;1;2
+Ecosystem_function;1;1
+Ecosystem structure;2;1
+Ecosystem structure;3;1
+Genetic composition;4;1
+Species populations;4;2
+Community composition;4;1
+Species populations;5;1
+Species_traits;5;1
+Community composition;5;1
+Ecosystem_function;5;1
+Ecosystem_function;7;1
+Species populations;9;1
+Ecosystem_function;9;1
+Ecosystem_function;11;1

@@ -1,0 +1,47 @@
+Target;Variable;Indicators
+Not considered;Genetic composition;1
+Aichi 1;Species populations;1
+Aichi 4;Species populations;4
+Aichi 5;Species populations;8
+Aichi 6;Species populations;10
+Aichi 8;Species populations;1
+Aichi 9;Species populations;3
+Aichi 10;Species populations;9
+Aichi 11;Species populations;4
+Aichi 12;Species populations;9
+Aichi 14;Species populations;3
+Aichi 15;Species populations;4
+Aichi 17;Species populations;1
+Aichi 19;Species populations;3
+Aichi 6;Species_traits;4
+Aichi 1;Community composition;1
+Aichi 4;Community composition;4
+Aichi 5;Community composition;7
+Aichi 6;Community composition;10
+Aichi 8;Community composition;1
+Aichi 9;Community composition;3
+Aichi 10;Community composition;9
+Aichi 11;Community composition;4
+Aichi 12;Community composition;8
+Aichi 14;Community composition;3
+Aichi 15;Community composition;4
+Aichi 17;Community composition;1
+Aichi 19;Community composition;3
+Aichi 1;Ecosystem structure;1
+Aichi 4;Ecosystem structure;2
+Aichi 5;Ecosystem structure;6
+Aichi 10;Ecosystem structure;3
+Aichi 11;Ecosystem structure;6
+Aichi 12;Ecosystem structure;3
+Aichi 14;Ecosystem structure;3
+Aichi 15;Ecosystem structure;2
+Aichi 17;Ecosystem structure;1
+Aichi 1;Ecosystem_function;1
+Aichi 4;Ecosystem_function;2
+Aichi 5;Ecosystem_function;3
+Aichi 6;Ecosystem_function;4
+Aichi 10;Ecosystem_function;3
+Aichi 12;Ecosystem_function;2
+Aichi 14;Ecosystem_function;1
+Aichi 15;Ecosystem_function;3
+Aichi 19;Ecosystem_function;1

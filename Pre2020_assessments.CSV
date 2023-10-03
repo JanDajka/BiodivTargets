@@ -1,0 +1,32 @@
+Assessment;Variable;Indicators
+Not considered;Genetic composition;1
+CBD;Species populations;20
+CITES;Species populations;5
+CMS;Species populations;8
+IPBES;Species populations;16
+Ramsar;Species populations;9
+SDG;Species populations;20
+CBD;Species_traits;2
+CITES;Species_traits;2
+CMS;Species_traits;2
+IPBES;Species_traits;2
+Ramsar;Species_traits;2
+SDG;Species_traits;2
+CBD;Community composition;19
+CITES;Community composition;5
+CMS;Community composition;8
+IPBES;Community composition;15
+Ramsar;Community composition;9
+SDG;Community composition;19
+CBD;Ecosystem structure;12
+CITES;Ecosystem structure;1
+CMS;Ecosystem structure;5
+IPBES;Ecosystem structure;9
+Ramsar;Ecosystem structure;7
+SDG;Ecosystem structure;11
+CBD;Ecosystem_function;4
+CITES;Ecosystem_function;1
+CMS;Ecosystem_function;1
+IPBES;Ecosystem_function;3
+Ramsar;Ecosystem_function;2
+SDG;Ecosystem_function;4
