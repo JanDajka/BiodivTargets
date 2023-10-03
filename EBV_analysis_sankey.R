@@ -197,6 +197,67 @@ saveNetwork(plot.a,"Pre2020_assessments.html", selfcontained = FALSE)
 webshot("Pre2020_assessments.html", "Pre2020_assessments.pdf")
 
 #_####
+#POST2020 TARGETS####
+
+#Import data####
+Post2020 <- read.csv("D:/Anne/HifMB/Final/Post2020_alltargets.CSV", sep=";")
+head(Post2020)
+
+#Sankey dataframe####
+#create link dataframe for sankey plot
+#list of links between nodes (variables & targets) with intensity for each link (no. of indicators)
+links4 <- data.frame(
+  source=Post2020$Variable, 
+  target=Post2020$Target, 
+  value=as.character(Post2020$Indicators))
+
+#create node dataframe that lists every entities involved in links (variables & targets)
+nodes4 <- data.frame(name=unique(c(links4$source, links4$target)))
+
+#Coloration####
+#set colours for links: add a 'group' column to each connection
+variable <- Post2020$Variable
+variable
+links4$group <- as.factor(variable)
+
+# Add a 'group' column to each node. Here I decide to put all of them in the same group to mgive them the same colour
+nodes4$group <- as.factor(c("Var"))
+
+#doublecheck the node ID (node$name) to make sure the ID matches the name in the data frame but is written without underscore
+nodes4$name
+nodes4$NodeID = c("Genetic composition", "Species populations", "Community composition", "Ecosystem structure", "Ecosystem function", "Other", "Species traits", "Tbd", "A", "B", "C", "D", c(1:23))
+print(nodes4)
+
+# Set colours for each group:
+sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Community composition", "Ecosystem structure", "Ecosystem_function", "Other", "Species_traits", "Tbd", "Var"]) .range(["saddlebrown", "orange", "darkred", "gold", "darkslateblue", "lightgrey", "darkcyan", "slategray", "lightgrey"])'
+
+#Combine####
+#links and node dataframes are matched to each other
+links4$IDsource <- match(links4$source, nodes4$name)-1 
+links4$IDtarget <- match(links4$target, nodes4$name)-1
+
+#Plot####
+plot.p <- sankeyNetwork(Links = links4, Nodes = nodes4,
+                        Source = "IDsource", Target = "IDtarget",
+                        Value = "value", NodeID = "NodeID",
+                        iterations = 0,
+                        colourScale = sankey.col,
+                        LinkGroup = "group",
+                        NodeGroup = "group",
+                        fontSize = 10, fontFamily = "arial",
+                        nodeWidth=10,
+                        sinksRight = FALSE,
+                        nodePadding = 5)
+
+plot.p
+
+#Save####
+#the html plot can be adjusted manually in order to sort the nodes in the right order
+saveNetwork(plot.t,"Post2020_targets.html", selfcontained = FALSE)
+webshot("Post2020_targets.html", "Post2020_targets.pdf")
+
+
+#_####
 #POST2020 MARINE TARGETS####
 
 #Import data####
