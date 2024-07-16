@@ -2,12 +2,20 @@
 #Anne Kristin Eilrich 05/2023
 
 #Housekeeping####
-setwd("...")
+setwd("C:/Users/jan/OneDrive/Postdoc HIFMB/Biodiversity Policy Targets Project/FinalData/FinalData")
 
 library(networkD3)
 library(htmlwidgets)
 library(webshot)
 
+install.packages("wesanderson")
+library("wesanderson")
+
+# See all palettes
+names(wes_palettes)
+pal <- wes_palette("Zissou1", 6, type = "continuous")
+pal
+as.character(pal)
 #_####
 #RESEARCH####
 
@@ -41,7 +49,7 @@ nodes1$NodeID = c("Marine Biodiversity Research", "Genetic composition", "Specie
 print(nodes1)
 
 # Set colours for each group:
-sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Species_ traits", "Community composition", "Ecosystem structure", "Ecosystem_function", "Var"]) .range(["saddlebrown", "orange", "darkcyan", "darkred", "gold", "darkslateblue", "lightgrey"])'
+sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Species_ traits", "Community composition", "Ecosystem structure", "Ecosystem_function", "Var"]) .range(["#BDC881", "#4472c4", "#000080", "#32806E", "#F11B00", "#E3B710", "silver"])'
 
 
 #Combine####
@@ -109,7 +117,7 @@ nodes2$NodeID = c("Genetic composition", "Species populations", "Species traits"
 print(nodes2)
 
 # Set colours for each group:
-sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Species_ traits", "Community composition", "Ecosystem structure", "Ecosystem_function", "Var"]) .range(["saddlebrown", "orange", "darkcyan", "darkred", "gold", "darkslateblue", "lightgrey"])'
+sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Species_ traits", "Community composition", "Ecosystem structure", "Ecosystem_function", "Var"]) .range(["#BDC881", "#4472c4", "#000080", "#32806E", "#F11B00", "#E3B710", "silver"])'
 
 
 #Combine####
@@ -125,7 +133,7 @@ plot.t <- sankeyNetwork(Links = links2, Nodes = nodes2,
                         colourScale = sankey.col,
                         LinkGroup = "group",
                         NodeGroup = "group",
-                        fontSize = 10, fontFamily = "arial",
+                        fontSize = 16, fontFamily = "arial",
                         nodeWidth=10,
                         sinksRight = FALSE,
                         nodePadding = 3)
@@ -169,7 +177,7 @@ nodes3$NodeID = c("Genetic composition",  "Species populations", "Species traits
 print(nodes3)
 
 # Set colours for each group:
-sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Species_ traits", "Community composition", "Ecosystem structure", "Ecosystem_function", "Var"]) .range(["saddlebrown", "orange", "darkcyan", "darkred", "gold", "darkslateblue", "lightgrey"])'
+sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Species_ traits", "Community composition", "Ecosystem structure", "Ecosystem_function", "Var"]) .range(["#BDC881", "#4472c4", "#000080", "#32806E", "#F11B00", "#E3B710", "silver"])'
 
 #Combine####
 #links and node dataframes are matched to each other
@@ -184,7 +192,7 @@ plot.a <- sankeyNetwork(Links = links3, Nodes = nodes3,
                         colourScale = sankey.col,
                         LinkGroup = "group",
                         NodeGroup = "group",
-                        fontSize = 10, fontFamily = "arial",
+                        fontSize = 16, fontFamily = "arial",
                         nodeWidth=10,
                         sinksRight = FALSE,
                         nodePadding = 3)
@@ -195,67 +203,6 @@ plot.a
 #the html plot can be adjusted manually in order to sort the nodes in the right order
 saveNetwork(plot.a,"Pre2020_assessments.html", selfcontained = FALSE)
 webshot("Pre2020_assessments.html", "Pre2020_assessments.pdf")
-
-#_####
-#POST2020 TARGETS####
-
-#Import data####
-Post2020 <- read.csv("D:/Anne/HifMB/Final/Post2020_alltargets.CSV", sep=";")
-head(Post2020)
-
-#Sankey dataframe####
-#create link dataframe for sankey plot
-#list of links between nodes (variables & targets) with intensity for each link (no. of indicators)
-links4 <- data.frame(
-  source=Post2020$Variable, 
-  target=Post2020$Target, 
-  value=as.character(Post2020$Indicators))
-
-#create node dataframe that lists every entities involved in links (variables & targets)
-nodes4 <- data.frame(name=unique(c(links4$source, links4$target)))
-
-#Coloration####
-#set colours for links: add a 'group' column to each connection
-variable <- Post2020$Variable
-variable
-links4$group <- as.factor(variable)
-
-# Add a 'group' column to each node. Here I decide to put all of them in the same group to mgive them the same colour
-nodes4$group <- as.factor(c("Var"))
-
-#doublecheck the node ID (node$name) to make sure the ID matches the name in the data frame but is written without underscore
-nodes4$name
-nodes4$NodeID = c("Genetic composition", "Species populations", "Community composition", "Ecosystem structure", "Ecosystem function", "Other", "Species traits", "Tbd", "A", "B", "C", "D", c(1:23))
-print(nodes4)
-
-# Set colours for each group:
-sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Community composition", "Ecosystem structure", "Ecosystem_function", "Other", "Species_traits", "Tbd", "Var"]) .range(["saddlebrown", "orange", "darkred", "gold", "darkslateblue", "lightgrey", "darkcyan", "slategray", "lightgrey"])'
-
-#Combine####
-#links and node dataframes are matched to each other
-links4$IDsource <- match(links4$source, nodes4$name)-1 
-links4$IDtarget <- match(links4$target, nodes4$name)-1
-
-#Plot####
-plot.p <- sankeyNetwork(Links = links4, Nodes = nodes4,
-                        Source = "IDsource", Target = "IDtarget",
-                        Value = "value", NodeID = "NodeID",
-                        iterations = 0,
-                        colourScale = sankey.col,
-                        LinkGroup = "group",
-                        NodeGroup = "group",
-                        fontSize = 10, fontFamily = "arial",
-                        nodeWidth=10,
-                        sinksRight = FALSE,
-                        nodePadding = 5)
-
-plot.p
-
-#Save####
-#the html plot can be adjusted manually in order to sort the nodes in the right order
-saveNetwork(plot.t,"Post2020_targets.html", selfcontained = FALSE)
-webshot("Post2020_targets.html", "Post2020_targets.pdf")
-
 
 #_####
 #POST2020 MARINE TARGETS####
@@ -290,7 +237,7 @@ nodes5$NodeID = c("Genetic composition", "Species populations", "Community compo
 print(nodes5)
 
 # Set colours for each group:
-sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Community composition", "Ecosystem structure", "Ecosystem_function", "Species_traits", "Var"]) .range(["saddlebrown", "orange", "darkred", "gold", "darkslateblue", "darkcyan", "lightgrey"])'
+sankey.col <- 'd3.scaleOrdinal() .domain(["Genetic composition", "Species populations", "Community composition", "Ecosystem structure", "Ecosystem function", "Species traits", "Var"]) .range(["#BDC881", "#4472c4", "#32806E", "#F11B00", "#E3B710", "#000080", "silver"])'
 
 
 #Combine####
@@ -306,7 +253,7 @@ plot.m <- sankeyNetwork(Links = links5, Nodes = nodes5,
                         colourScale = sankey.col,
                         LinkGroup = "group",
                         NodeGroup = "group",
-                        fontSize = 10, fontFamily = "arial",
+                        fontSize = 16, fontFamily = "arial",
                         nodeWidth=10,
                         sinksRight = FALSE,
                         nodePadding = 3)
