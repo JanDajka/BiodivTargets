@@ -1,10 +1,10 @@
 # BiodivTargets
-Repository for paper "Urgent need to implement science-based policy targets for marine biodiversity" - Global policy targets effectively address marine biodiversity, but they are not being implemented by countries
+Repository for paper "From Science to Policy: Evolving Marine Biodiversity Targets" 
+
 You can find:
-- Tables for Essential Biodiversity Variables (EBV) analysis - Pre-2020 and Post-2020 in seperate pdf-documents
-- R-codes to recreate our figures
-- Data in CSV-files for that R-code
-- Biodiversity Indicators Partnership (BIP) archives for their indicators (https://www.bipindicators.net/)
+- Tables for Essential Biodiversity Variables (EBV) analysis on pre-2020 and post-2020 indicators (xlsx-files)
+- R-codes to recreate our figures (R-file)
+- Data in CSV-files for that R-code (csv-files)
 
 Please let me know should you require anything else regarding our paper (jan-claas.dajka@hifmb.de), always happy to help and collaborate. 
 
